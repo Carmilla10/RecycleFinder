@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "672567355256",
+    "firebase_url": "https://recyclefinder-42186-default-rtdb.firebaseio.com",
+    "project_id": "recyclefinder-42186",
+    "storage_bucket": "recyclefinder-42186.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672567355256:android:d7ef9cd93811b92bfe8a8d",
+        "android_client_info": {
+          "package_name": "com.example.recyclefinder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDcaCE1EDxMKCaAgAxW-uwLK-ASv0JRiHQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

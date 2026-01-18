@@ -1,0 +1,81 @@
+/*
+ * © 2026 RecycleFinder. All Rights Reserved.
+ */
+
+package com.example.recyclefinder;
+
+import android.os.Bundle;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.bumptech.glide.Glide;
+
+public class AboutDeveloperActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_about_developer);
+
+        // Setup toolbar
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            if (getSupportActionBar() != null) {
+                getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                getSupportActionBar().setTitle("About Developer");
+            }
+        }
+
+        // Initialize views
+        ImageView imageViewDev1 = findViewById(R.id.imageViewDev1);
+        ImageView imageViewDev2 = findViewById(R.id.imageViewDev2);
+        ImageView imageViewDev3 = findViewById(R.id.imageViewDev3);
+        ImageView imageViewDev4 = findViewById(R.id.imageViewDev4);
+
+        TextView textViewName1 = findViewById(R.id.textViewName1);
+        TextView textViewName2 = findViewById(R.id.textViewName2);
+        TextView textViewName3 = findViewById(R.id.textViewName3);
+        TextView textViewName4 = findViewById(R.id.textViewName4);
+
+        TextView textViewStudentId1 = findViewById(R.id.textViewStudentId1);
+        TextView textViewStudentId2 = findViewById(R.id.textViewStudentId2);
+        TextView textViewStudentId3 = findViewById(R.id.textViewStudentId3);
+        TextView textViewStudentId4 = findViewById(R.id.textViewStudentId4);
+
+        // TODO: Replace with actual developer information
+        // Developer 1
+        // You can load images from drawable: Glide.with(this).load(R.drawable.dev1_photo).into(imageViewDev1);
+        // Or from URL: Glide.with(this).load("https://example.com/photo1.jpg").into(imageViewDev1);
+        textViewName1.setText("NUR CARMILLA BINTI ABDULLAH MUHAMMAD SHAFIQ");
+        textViewStudentId1.setText("Student ID: 2023268272");
+
+        // Developer 2
+        textViewName2.setText("FATIN AQILAH BINTI MOHD ASRI ");
+        textViewStudentId2.setText("Student ID: 2023674398");
+
+        // Developer 3
+        textViewName3.setText("WAN SYAHIRAH WAN KAMAL");
+        textViewStudentId3.setText("Student ID: 2024530999");
+
+        // Developer 4
+        textViewName4.setText("FITRI JOHAN BIN SHAHRUL MAZLI");
+        textViewStudentId4.setText("Student ID: 2023425852");
+
+        // Set default placeholder images (you can replace with actual photos)
+        // For now, using the app logo as placeholder
+        imageViewDev1.setImageResource(R.drawable.carmilla);
+        imageViewDev2.setImageResource(R.drawable.fatin);
+        imageViewDev3.setImageResource(R.drawable.wansya);
+        imageViewDev4.setImageResource(R.drawable.fitri);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
+    }
+}

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#FFFFFF"
+    android:padding="24dp">
+
+    <!-- Logo Image -->
+    <ImageView
+        android:id="@+id/logoImage"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:src="@drawable/logo"
+        android:contentDescription="RecycleFinder Logo"
+        android:scaleType="fitCenter"
+        android:layout_marginBottom="32dp"
+        android:elevation="4dp" />
+
+    <!-- App Name Text with better typography -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="RecycleFinder"
+        android:textSize="32sp"
+        android:textColor="#1B5E20"
+        android:textStyle="bold"
+        android:letterSpacing="0.02"
+        android:gravity="center"
+        android:fontFamily="sans-serif"
+        android:layout_marginBottom="12dp"
+        android:paddingHorizontal="16dp" />
+
+    <!-- Simple decorative line -->
+    <View
+        android:layout_width="80dp"
+        android:layout_height="2dp"
+        android:background="#4CAF50"
+        android:alpha="0.6"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Subtitle with improved spacing -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Your Recycle Reminder"
+        android:textSize="15sp"
+        android:textColor="#607D8B"
+        android:gravity="center"
+        android:lineSpacingExtra="6dp"
+        android:fontFamily="sans-serif-light"
+        android:paddingHorizontal="20dp" />
+
+</LinearLayout>
