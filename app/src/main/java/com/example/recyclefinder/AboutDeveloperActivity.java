@@ -5,8 +5,11 @@
 package com.example.recyclefinder;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.content.Intent;
+import android.net.Uri;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -71,6 +74,16 @@ public class AboutDeveloperActivity extends AppCompatActivity {
         imageViewDev2.setImageResource(R.drawable.fatin);
         imageViewDev3.setImageResource(R.drawable.wansya);
         imageViewDev4.setImageResource(R.drawable.fitri);
+
+        // Setup GitHub button
+        Button btnGithub = findViewById(R.id.btnGithub);
+        if (btnGithub != null) {
+            btnGithub.setOnClickListener(v -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("https://github.com/Carmilla10/RecycleFinder"));
+                startActivity(intent);
+            });
+        }
     }
 
     @Override

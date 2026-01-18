@@ -198,7 +198,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Tap the menu button (☰) at the top left to access Profile, Recycling Guidelines, About, and other features."
+                    android:text="Tap the menu button (☰) at the top left to access Profile, Recycle Guidelines, About, and other features."
                     android:textSize="13sp"
                     android:textColor="#555555"
                     android:lineSpacingMultiplier="1.3"
