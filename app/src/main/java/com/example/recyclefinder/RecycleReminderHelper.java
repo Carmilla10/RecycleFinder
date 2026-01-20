@@ -16,8 +16,7 @@ public class RecycleReminderHelper {
 
     public static int setRecycleReminder(Context context, long reminderTimeMillis, String itemName, String itemId) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        
-        // Generate unique request code based on reminder time and itemId
+
         int requestCode = (int) ((reminderTimeMillis + (itemId != null ? itemId.hashCode() : 0)) % Integer.MAX_VALUE);
         
         Intent intent = new Intent(context, RecycleReminderReceiver.class);

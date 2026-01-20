@@ -22,15 +22,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private EditText email, password, confirmPassword, name, phone;
     private Button registerBtn;
     private FirebaseAuth auth;
-    private DatabaseReference userRef;
+    private FirebaseFirestore firestore;
     private ImageView togglePassword, toggleConfirmPassword;
     private boolean passwordVisible = false;
     private boolean confirmPasswordVisible = false;
@@ -54,7 +53,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         auth = FirebaseAuth.getInstance();
-        userRef = FirebaseDatabase.getInstance().getReference("users");
+        firestore = FirebaseFirestore.getInstance();
 
         // Initialize all views
         initializeViews();
@@ -82,7 +81,6 @@ public class RegisterActivity extends AppCompatActivity {
         togglePassword = findViewById(R.id.togglePassword);
         toggleConfirmPassword = findViewById(R.id.toggleConfirmPassword);
 
-        // Set clean hints (no asterisks since we have labels with asterisks)
         name.setHint("Enter your full name");
         email.setHint("Enter your email");
         password.setHint("Create a password");
@@ -149,7 +147,6 @@ public class RegisterActivity extends AppCompatActivity {
                     emailCheckHandler.removeCallbacks(emailCheckRunnable);
                 }
 
-                // Schedule new check with delay
                 emailCheckRunnable = new Runnable() {
                     @Override
                     public void run() {
@@ -352,8 +349,10 @@ public class RegisterActivity extends AppCompatActivity {
                     String userId = result.getUser().getUid();
                     User user = new User(userName, userEmail, userPhone);
 
-                    // Save additional user data to Realtime Database
-                    userRef.child(userId).setValue(user)
+                    // Save additional user data to Firestore
+                    firestore.collection("users")
+                            .document(userId)
+                            .set(user)
                             .addOnSuccessListener(aVoid -> {
                                 showSuccessAndNavigate();
                             })
