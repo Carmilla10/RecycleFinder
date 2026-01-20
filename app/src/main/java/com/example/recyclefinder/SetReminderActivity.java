@@ -36,8 +36,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -58,7 +56,6 @@ public class SetReminderActivity extends AppCompatActivity {
     private EditText editTextItemName;
 
     private Bitmap selectedBitmap;
-    private DatabaseReference databaseRef;
     private FirebaseFirestore firestore;
     private String itemName = "";
     private long reminderTime = 0;
@@ -71,7 +68,6 @@ public class SetReminderActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_set_reminder);
 
-        databaseRef = FirebaseDatabase.getInstance().getReference("recycle_items");
         firestore = FirebaseFirestore.getInstance();
 
         btnTakePhoto = findViewById(R.id.btnTakePhoto);
@@ -311,14 +307,6 @@ public class SetReminderActivity extends AppCompatActivity {
                     .document(itemId)
                     .set(itemData)
                     .addOnSuccessListener(aVoid -> {
-                        // Also save to Realtime Database
-                        RecycleItem item = new RecycleItem();
-                        item.name = itemName;
-                        item.imageUrl = imageBase64;
-                        item.timestamp = System.currentTimeMillis();
-                        item.userId = userId;
-                        databaseRef.child(itemId).setValue(item);
-
                         // Set local alarm
                         int reminderId = RecycleReminderHelper.setRecycleReminder(
                                 this,

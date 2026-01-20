@@ -18,15 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.Query;
-import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class RecycleItemsActivity extends AppCompatActivity {
@@ -36,7 +30,7 @@ public class RecycleItemsActivity extends AppCompatActivity {
     private List<RecycleItem> itemList;
     private TextView emptyText;
     private Button btnFindCenters;
-    private DatabaseReference databaseRef;
+    private FirebaseFirestore firestore;
     private FirebaseAuth auth;
 
     @Override
@@ -45,7 +39,7 @@ public class RecycleItemsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recycle_items);
 
         auth = FirebaseAuth.getInstance();
-        databaseRef = FirebaseDatabase.getInstance().getReference("recycle_items");
+        firestore = FirebaseFirestore.getInstance();
 
         recyclerView = findViewById(R.id.recyclerView);
         emptyText = findViewById(R.id.emptyText);
@@ -92,44 +86,42 @@ public class RecycleItemsActivity extends AppCompatActivity {
             return;
         }
         
-        databaseRef.child(itemId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    RecycleItem item = snapshot.getValue(RecycleItem.class);
-                    if (item != null) {
-                        // Only show item if it belongs to current user
-                        if (currentUser.getUid().equals(item.userId)) {
-                            item.itemId = itemId;
-                            itemList.clear();
-                            itemList.add(item);
-                            adapter.notifyDataSetChanged();
-                            emptyText.setVisibility(View.GONE);
-                            
-                            // Scroll to top
-                            recyclerView.scrollToPosition(0);
+        firestore.collection("recycle_items")
+                .document(itemId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        RecycleItem item = documentSnapshot.toObject(RecycleItem.class);
+                        if (item != null) {
+                            // Only show item if it belongs to current user
+                            if (currentUser.getUid().equals(item.userId)) {
+                                item.itemId = itemId;
+                                itemList.clear();
+                                itemList.add(item);
+                                adapter.notifyDataSetChanged();
+                                emptyText.setVisibility(View.GONE);
+                                
+                                // Scroll to top
+                                recyclerView.scrollToPosition(0);
+                            } else {
+                                Toast.makeText(RecycleItemsActivity.this,
+                                        "You don't have permission to view this item",
+                                        Toast.LENGTH_SHORT).show();
+                                showEmptyState();
+                            }
                         } else {
-                            Toast.makeText(RecycleItemsActivity.this,
-                                    "You don't have permission to view this item",
-                                    Toast.LENGTH_SHORT).show();
                             showEmptyState();
                         }
                     } else {
                         showEmptyState();
                     }
-                } else {
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(RecycleItemsActivity.this,
+                            "Failed to load item: " + e.getMessage(),
+                            Toast.LENGTH_SHORT).show();
                     showEmptyState();
-                }
-            }
-            
-            @Override
-            public void onCancelled(DatabaseError error) {
-                Toast.makeText(RecycleItemsActivity.this,
-                        "Failed to load item: " + error.getMessage(),
-                        Toast.LENGTH_SHORT).show();
-                showEmptyState();
-            }
-        });
+                });
     }
 
     private void showEmptyState() {

@@ -362,8 +362,8 @@ public class RegisterActivity extends AppCompatActivity {
                             .addOnFailureListener(e -> {
                                 // Database save failed, but auth succeeded
                                 setLoadingState(false);
-                                Toast.makeText(this, "Account created! Additional setup needed.", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(this, MainActivity.class));
+                                Toast.makeText(this, "Account created! Please log in.", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(this, LoginActivity.class));
                                 finish();
                             });
                 })
@@ -438,8 +438,8 @@ public class RegisterActivity extends AppCompatActivity {
 
         // Navigate after brief delay for visual feedback
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
-            Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(this, MainActivity.class));
+            Toast.makeText(this, "Registration successful! Please log in.", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(this, LoginActivity.class));
             finish();
         }, 300);
     }
