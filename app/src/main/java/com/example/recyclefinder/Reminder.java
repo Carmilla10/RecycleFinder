@@ -15,7 +15,6 @@ public class Reminder {
     public boolean isDeleted;
 
     public Reminder() {
-        // Required for Firestore
         this.isClicked = false;
         this.isDeleted = false;
     }

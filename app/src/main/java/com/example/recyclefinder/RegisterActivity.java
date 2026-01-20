@@ -344,7 +344,6 @@ public class RegisterActivity extends AppCompatActivity {
             return;
         }
 
-        // Disable UI and show loading state
         setLoadingState(true);
 
         // Create user with Firebase Auth
@@ -356,11 +355,9 @@ public class RegisterActivity extends AppCompatActivity {
                     // Save additional user data to Realtime Database
                     userRef.child(userId).setValue(user)
                             .addOnSuccessListener(aVoid -> {
-                                // Success - show feedback and navigate
                                 showSuccessAndNavigate();
                             })
                             .addOnFailureListener(e -> {
-                                // Database save failed, but auth succeeded
                                 setLoadingState(false);
                                 Toast.makeText(this, "Account created! Please log in.", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(this, LoginActivity.class));
@@ -384,14 +381,12 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void setLoadingState(boolean isLoading) {
         if (isLoading) {
-            // Disable button with visual feedback
             registerBtn.setEnabled(false);
             registerBtn.setAlpha(0.6f);
 
-            // Disable all form inputs
             disableFormInputs();
         } else {
-            // Re-enable everything
+
             enableFormInputs();
             updateRegisterButtonState();
         }
@@ -406,7 +401,6 @@ public class RegisterActivity extends AppCompatActivity {
         togglePassword.setEnabled(false);
         toggleConfirmPassword.setEnabled(false);
 
-        // Visual feedback for disabled state
         email.setAlpha(0.7f);
         password.setAlpha(0.7f);
         confirmPassword.setAlpha(0.7f);

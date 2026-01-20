@@ -49,10 +49,7 @@ public class AboutDeveloperActivity extends AppCompatActivity {
         TextView textViewStudentId3 = findViewById(R.id.textViewStudentId3);
         TextView textViewStudentId4 = findViewById(R.id.textViewStudentId4);
 
-        // TODO: Replace with actual developer information
         // Developer 1
-        // You can load images from drawable: Glide.with(this).load(R.drawable.dev1_photo).into(imageViewDev1);
-        // Or from URL: Glide.with(this).load("https://example.com/photo1.jpg").into(imageViewDev1);
         textViewName1.setText("NUR CARMILLA BINTI ABDULLAH MUHAMMAD SHAFIQ");
         textViewStudentId1.setText("Student ID: 2023268272");
 
@@ -68,8 +65,6 @@ public class AboutDeveloperActivity extends AppCompatActivity {
         textViewName4.setText("FITRI JOHAN BIN SHAHRUL MAZLI");
         textViewStudentId4.setText("Student ID: 2023425852");
 
-        // Set default placeholder images (you can replace with actual photos)
-        // For now, using the app logo as placeholder
         imageViewDev1.setImageResource(R.drawable.carmilla);
         imageViewDev2.setImageResource(R.drawable.fatin);
         imageViewDev3.setImageResource(R.drawable.wansya);

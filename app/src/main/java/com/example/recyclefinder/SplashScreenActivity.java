@@ -39,15 +39,12 @@ public class SplashScreenActivity extends AppCompatActivity {
             }
             
             startActivity(intent);
-            finish(); // Close splash screen so it doesn't appear in back stack
+            finish();
         }, SPLASH_SCREEN_DELAY);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // Optional: Force clear cached user on each app start
-        // Uncomment the line below if you want users to log in every time the app starts
-        // FirebaseAuth.getInstance().signOut();
     }
 }

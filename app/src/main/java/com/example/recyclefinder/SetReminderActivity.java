@@ -60,7 +60,6 @@ public class SetReminderActivity extends AppCompatActivity {
     private String itemName = "";
     private long reminderTime = 0;
 
-    // Simple click prevention
     private long lastClickTime = 0;
 
     @Override

@@ -69,11 +69,9 @@ public class RecycleItemsActivity extends AppCompatActivity {
                 // Show specific item details
                 loadSpecificItem(itemId, itemName);
             } else {
-                // This shouldn't happen when called from notification, but just in case
                 finish();
             }
         } else {
-            // Not called from notification - show empty
             showEmptyState();
         }
     }

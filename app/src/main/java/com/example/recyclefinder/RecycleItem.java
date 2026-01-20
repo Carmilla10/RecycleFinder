@@ -10,7 +10,7 @@ public class RecycleItem {
     public long timestamp;
     public String userId;
     public boolean isRecycled;
-    public String itemId; // For deletion
+    public String itemId;
 
     public RecycleItem() {
         // Required for Firebase

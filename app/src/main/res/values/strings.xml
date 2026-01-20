@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">RecycleFinder</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="google_maps_key">AIzaSyDsdn8TUvxBUWCA3s0cDiut0DVcwk6_prE</string>
+    <string name="google_maps_key">API_KEY</string>
 </resources>

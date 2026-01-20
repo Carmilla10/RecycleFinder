@@ -29,7 +29,7 @@ import org.json.JSONObject;
 
 public class PlaceDetailActivity extends AppCompatActivity {
 
-    private static final String API_KEY = "AIzaSyDsdn8TUvxBUWCA3s0cDiut0DVcwk6_prE";
+    private static final String API_KEY = "API_KEY";
 
     private TextView textViewName, textViewAddress, textViewPhone, textViewRating, textViewStatus;
     private ImageView imageView;

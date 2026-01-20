@@ -1,7 +1,3 @@
-/*
- * © 2026 RecycleFinder. All Rights Reserved.
- */
-
 package com.example.recyclefinder;
 
 import android.Manifest;
@@ -54,7 +50,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     private FusedLocationProviderClient client;
     private LatLng currentLatLng;
     private static final int LOCATION_PERMISSION_REQUEST_CODE = 44;
-    private static final String API_KEY = "AIzaSyDsdn8TUvxBUWCA3s0cDiut0DVcwk6_prE"; // Your key
+    private static final String API_KEY = "API_KEY";
     private java.util.List<LatLng> markerPositions = new java.util.ArrayList<>();
     private java.util.List<Marker> recyclingMarkers = new java.util.ArrayList<>(); // Store recycling center markers
     private EditText searchEditText;
@@ -66,7 +62,7 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map); // Make sure this is your map layout
+        setContentView(R.layout.activity_map);
 
         // Get map fragment
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
@@ -436,8 +432,6 @@ public class MapActivity extends FragmentActivity implements OnMapReadyCallback 
         }
         LatLngBounds bounds = builder.build();
 
-        // Animate camera to fit all markers with padding (in pixels)
-        // 100dp padding on all sides so markers aren't at the edge
         int padding = (int) (100 * getResources().getDisplayMetrics().density);
         mMap.animateCamera(CameraUpdateFactory.newLatLngBounds(bounds, padding));
     }

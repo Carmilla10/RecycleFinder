@@ -30,7 +30,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDsdn8TUvxBUWCA3s0cDiut0DVcwk6_prE" />
+            android:value="API_KEY" />
 
         <!-- Splash Screen Activity as launcher -->
         <activity
